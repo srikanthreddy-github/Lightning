@@ -16,5 +16,6 @@ public without sharing class Lookup {
         }
         List<sObject> lookUpList = database.query(myQuery);
         return lookUpList;
+        
     }
 }
