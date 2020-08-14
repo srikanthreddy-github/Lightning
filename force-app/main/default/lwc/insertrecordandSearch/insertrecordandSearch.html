@@ -1,0 +1,127 @@
+<template>
+<img src={c2n}>
+<img src={c2n}>
+   <lightning-card class="QSA" title="Friction Quick Search and Add">
+<div class="demo-only demo-only--sizing slds-grid slds-wrap">
+<div class="slds-col slds-size_1-of-3"><span>
+<div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+<lightning-card title="Location Information">
+   <template if:true={conRecord}>
+      <div class="slds-m-around--xx-large">
+            <div class="container-fluid">
+            <div class="form-group">
+               <lightning-input label="Name" name="conFirstName" required="required" type="text"
+                     value={conRecord.Name} onchange={handleNameChange}></lightning-input>
+            </div>
+            <div class="form-group">
+               <lightning-input label="AddressNumber" name="conFirstName" required="required" type="text"
+                     value={conRecord.Address_Number__c} onchange={handleAccountnumberChange}></lightning-input>
+            </div>
+               <div class="form-group">
+                  <lightning-input label="First Name" name="conFirstName" required="required" type="text"
+                        value={conRecord.First_Name__c} onchange={handleFirstNameChange}></lightning-input>
+               </div>
+               
+               <div class="form-group">
+                  <lightning-input label="Last Name" name="conLastName" required="required" type="text"
+                        value={conRecord.Last_Name__c} onchange={handleLastNameChange}></lightning-input>
+               </div>
+               <div class="form-group">
+                  <lightning-input label="Enter Phone Number" name="conPhone" type="number"
+                        value={conRecord.Phone__c} onchange={handlePhoneChange}></lightning-input>
+               </div>
+               <div class="form-group">
+                  <lightning-input label="Enter Email" name="conEmail" type="text" value={conRecord.Email__c}
+                        onchange={handleEmailChange}></lightning-input>
+               </div>
+            </div>
+            <br />
+      </div>
+   </template>
+</lightning-card>
+</div></span>
+</div>
+
+<div class="slds-col slds-size_2-of-3"><span>
+   <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+   <lightning-card title="Account/contact Information">
+   <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+      
+      <div class="slds-size_1-of-2">
+            <div class=" slds-text-align_center slds-m-around_x-small">
+               <lightning-input label="First Name" name="conFirstName" required="required" type="text"
+               value={conRecord.FirstName} onchange={handleFirstNameChange}></lightning-input>     
+</div>
+<div class="slds-m-bottom_small">
+<lightning-input type="text"
+   value={sVal}
+   label="Contact Name"
+   onchange={updateSeachKey}
+   ></lightning-input>
+</div>
+            </div>
+            <div class="slds-size_1-of-2">
+            <div class=" slds-text-align_center slds-m-around_x-small">
+               <lightning-input label="First Name" name="conFirstName" required="required" type="text"
+               value={conRecord.FirstName} onchange={handleFirstNameChange}></lightning-input>
+            </div>
+            </div>
+   
+   </div></lightning-card></div> </span></div>
+
+
+
+<div class="slds-size_2-of-2">
+<div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+<lightning-button label="Submit" onclick={createRec} variant="brand" class="slds-p-right_medium">
+
+</lightning-button>
+<lightning-button label="Search"
+      onclick={handleSearch}
+      variant="brand" class="slds-p-right_medium"></lightning-button>
+</div>
+</div>
+
+<table class="slds-table slds-table_cell-buffer slds-table_bordered slds-m-top_small">
+<thead>
+   <tr class="slds-line-height_reset">
+      <th class="" scope="col">
+         <div class="slds-truncate" title="First Name">First Name</div>
+      </th>
+      <th class="" scope="col">
+         <div class="slds-truncate" title="Last Name">Last Name</div>
+      </th>
+      <th class="" scope="col">
+         <div class="slds-truncate" title="Phone">Phone</div>
+      </th>
+      <th class="" scope="col">
+         <div class="slds-truncate" title="Email">Email</div>
+      </th>
+   </tr>
+</thead>
+
+<tbody>
+   <!--iterate all contact records using for-each iteration -->    
+   <template for:each={contacts} for:item="contact">
+      <tr class="slds-hint-parent" key={contact.Id}>
+         <td>
+            <div class="slds-truncate">{contact.First_Name__c}</div>
+         </td>
+         <td>
+            <div class="slds-truncate">{contact.Last_Name__c}</div>
+         </td>
+         <td>
+            <div class="slds-truncate">
+               <lightning-formatted-phone value={contact.Phone__c} ></lightning-formatted-phone>
+            </div>
+         </td>
+         <td>
+            <div class="slds-truncate">
+               <lightning-formatted-email value={contact.Email__c} ></lightning-formatted-email>
+            </div>
+         </td>
+      </tr>
+   </template>
+</tbody>
+</table></div></lightning-card>
+</template>

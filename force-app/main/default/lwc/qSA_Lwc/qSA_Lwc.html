@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="Record with Field Integrity" icon-name="standard:account">
+            <div class="slds-p-around_x-small">
+                <lightning-input label="Name" value={rec.Name} onchange={handleNameChange}></lightning-input>
+                <lightning-input label="Account number" value={rec.Address_Number__c} onchange={handleIndChange}></lightning-input>
+                <lightning-input type="Phone" label="Phone" value={rec.Phone__c} onchange={handlePhnChange}></lightning-input><br/>
+               
+                <select class="slds-select" id="select-01" onchange={onValueSelection}>
+                    <option value="">---None---</option>
+                    <!--iterate all picklist values from wrapper list using for:each loop-->
+                      <template for:each={stageNameValues.data} for:item="picklistItem">
+                         <option key={picklistItem.svalue} value={picklistItem.svalue}>
+                           {picklistItem.slabel}
+                         </option>
+                    </template>
+              </select>
+              <lightning-input type="checkbox" value={rec.Add_Billing_Address_field} onchange={handleCheckBoxChange} label="Add_Billing_Address_field"></lightning-input>
+              <lightning-input type="checkbox" label="CheckBox1" value={rec.Add_Task__c} onchange={handCheckChange}></lightning-input>
+              <lightning-button label="Save" onclick={handleClick}></lightning-button>
+            </div>
+        </lightning-card>
+    </template>
